@@ -1,0 +1,121 @@
+/* Final Screen */
+.final-screen {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.final-container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4rem;
+  border-radius: 30px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  margin: 2rem;
+  animation: finalBounce 2s ease-out;
+}
+
+@keyframes finalBounce {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.final-title {
+  font-size: 4rem;
+  color: #8B5FBF;
+  margin-bottom: 2rem;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: titlePulse 2s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.final-message {
+  font-size: 1.3rem;
+  color: #6B5B95;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.final-celebration {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.celebration-emoji {
+  font-size: 3rem;
+  animation: celebrationBounce 2s ease-in-out infinite;
+}
+
+.celebration-emoji:nth-child(1) { animation-delay: 0s; }
+.celebration-emoji:nth-child(2) { animation-delay: 0.5s; }
+.celebration-emoji:nth-child(3) { animation-delay: 1s; }
+.celebration-emoji:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes celebrationBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+.play-again-btn {
+  font-size: 1.3rem;
+  padding: 1.5rem 3rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+  animation: buttonShimmer 3s ease-in-out infinite, buttonFloat 2s ease-in-out infinite;
+}
+
+.play-again-btn i {
+  font-size: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .final-container {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  .final-title {
+    font-size: 3rem;
+  }
+  
+  .final-message {
+    font-size: 1.1rem;
+  }
+  
+  .celebration-emoji {
+    font-size: 2.5rem;
+  }
+  
+  .final-celebration {
+    gap: 1rem;
+  }
+  
+  .play-again-btn {
+    font-size: 1.1rem;
+    padding: 1.2rem 2.5rem;
+  }
+}
