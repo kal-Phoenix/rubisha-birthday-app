@@ -1,26 +1,12 @@
 // Game constants and configuration
 export const PUZZLE_PAIRS = [
+  // One-to-one matching pairs (6 items, 6 worlds)
   { item: "Camp Half-Blood", world: "Percy Jackson" },
-  { item: "Annabeth", world: "Percy Jackson" },
-  { item: "Riptide", world: "Percy Jackson" },
-  { item: "Poseidon", world: "Percy Jackson" },
   { item: "Wardrobe", world: "Narnia" },
-  { item: "Aslan", world: "Narnia" },
-  { item: "White Witch", world: "Narnia" },
-  { item: "The Silver Chair", world: "Narnia" },
   { item: "Stellarlune", world: "Keeper of the Lost Cities" },
-  { item: "Sophie Foster", world: "Keeper of the Lost Cities" },
-  { item: "Telepathy", world: "Keeper of the Lost Cities" },
-  { item: "Elvin world", world: "Keeper of the Lost Cities" },
-  { item: "Stoneybrook", world: "Baby-Sitters Club" },
-  { item: "Kristy", world: "Baby-Sitters Club" },
-  { item: "Babysitting notebook", world: "Baby-Sitters Club" },
-  { item: "Claudia", world: "Baby-Sitters Club" },
-  { item: "Manga comic", world: "Princess X" },
-  { item: "May", world: "Princess X" },
-  { item: "Libby", world: "Princess X" },
-  { item: "Harriet", world: "Hamster Princess" },
-  { item: "Ogrecat", world: "Hamster Princess" }
+  { item: "Stoneybrook", world: "The Baby-Sitters Club" },
+  { item: "Manga Comic", world: "Princess X" },
+  { item: "Harriet", world: "Hamster Princess" }
 ];
 
 export const SLIDES_DATA = [
