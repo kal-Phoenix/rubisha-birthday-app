@@ -349,6 +349,14 @@
   border-color: rgba(255, 255, 255, 0.8);
 }
 
+.puzzle-piece.selected {
+  transform: scale(1.08);
+  z-index: 15;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+  border-color: rgba(255, 215, 0, 1);
+  border-width: 3px;
+}
+
 /* Touch feedback for mobile */
 @media (hover: none) and (pointer: coarse) {
   .puzzle-piece:active {

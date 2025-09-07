@@ -8,9 +8,7 @@ const JigsawPuzzle = ({ onComplete }) => {
   const [showCelebration, setShowCelebration] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [showMemories, setShowMemories] = useState(false);
-  const [touchStartPos, setTouchStartPos] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [selectedPiece, setSelectedPiece] = useState(null);
 
   useEffect(() => {
     initializePuzzle();
@@ -82,50 +80,19 @@ const JigsawPuzzle = ({ onComplete }) => {
     setDraggedPiece(null);
   };
 
-  // Touch event handlers for mobile support
-  const handleTouchStart = (e, piece) => {
-    e.preventDefault();
-    const touch = e.touches[0];
-    const rect = e.currentTarget.getBoundingClientRect();
-    
-    setTouchStartPos({ x: touch.clientX, y: touch.clientY });
-    setDraggedPiece(piece);
-    setIsDragging(true);
-    
-    // Calculate offset from touch point to piece center
-    setDragOffset({
-      x: touch.clientX - (rect.left + rect.width / 2),
-      y: touch.clientY - (rect.top + rect.height / 2)
-    });
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging || !draggedPiece) return;
-    e.preventDefault();
-  };
-
-  const handleTouchEnd = (e) => {
-    if (!isDragging || !draggedPiece) return;
-    
-    const touch = e.changedTouches[0];
-    const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-    
-    if (elementBelow) {
-      const targetPieceElement = elementBelow.closest('.puzzle-piece');
-      if (targetPieceElement) {
-        const targetPieceId = parseInt(targetPieceElement.dataset.pieceId);
-        const targetPiece = pieces.find(p => p.id === targetPieceId);
-        
-        if (targetPiece && targetPiece.id !== draggedPiece.id) {
-          swapPieces(draggedPiece, targetPiece);
-        }
-      }
+  // Simple tap-to-swap for mobile
+  const handlePieceTap = (piece) => {
+    if (!selectedPiece) {
+      // First tap - select the piece
+      setSelectedPiece(piece);
+    } else if (selectedPiece.id === piece.id) {
+      // Tap same piece - deselect
+      setSelectedPiece(null);
+    } else {
+      // Second tap - swap pieces
+      swapPieces(selectedPiece, piece);
+      setSelectedPiece(null);
     }
-    
-    setIsDragging(false);
-    setDraggedPiece(null);
-    setTouchStartPos(null);
-    setDragOffset({ x: 0, y: 0 });
   };
 
   // Helper function to swap pieces
@@ -252,7 +219,7 @@ const JigsawPuzzle = ({ onComplete }) => {
             <div
               key={piece.id}
               data-piece-id={piece.id}
-              className={`puzzle-piece ${piece.isCorrect ? 'correct' : 'incorrect'} ${draggedPiece?.id === piece.id ? 'dragging' : ''} ${isDragging && draggedPiece?.id === piece.id ? 'touch-dragging' : ''}`}
+              className={`puzzle-piece ${piece.isCorrect ? 'correct' : 'incorrect'} ${draggedPiece?.id === piece.id ? 'dragging' : ''} ${selectedPiece?.id === piece.id ? 'selected' : ''}`}
               style={{
                 left: `${getPositionX(piece.currentPosition)}%`,
                 top: `${getPositionY(piece.currentPosition)}%`
@@ -261,9 +228,7 @@ const JigsawPuzzle = ({ onComplete }) => {
               onDragStart={(e) => handleDragStart(e, piece)}
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, piece)}
-              onTouchStart={(e) => handleTouchStart(e, piece)}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
+              onClick={() => handlePieceTap(piece)}
             >
               <img
                 src={`/JIGSAW/piece_${piece.id + 1}.jpg`}
@@ -285,7 +250,7 @@ const JigsawPuzzle = ({ onComplete }) => {
         <div className="instruction-bubble">
           <div className="instruction-icon">💡</div>
           <p className="instruction-text">Drag and swap pieces to complete the puzzle!</p>
-          <p className="instruction-text-mobile">On mobile: Tap and hold a piece, then tap another to swap!</p>
+          <p className="instruction-text-mobile">On mobile: Tap one piece, then tap another to swap them!</p>
         </div>
       </div>
 
