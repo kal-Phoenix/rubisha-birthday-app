@@ -16,8 +16,8 @@
   position: relative;
   width: 100%;
   max-width: 100vw;
-  height: 70vh;
-  margin-bottom: 2rem;
+  height: 50vh;
+  margin-bottom: 1rem;
 }
 
 .gift-card {
@@ -101,15 +101,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .photo-container {
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   border-radius: 15px;
   overflow: hidden;
   background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -125,12 +125,16 @@
 
 .card-message {
   text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card-message h2 {
   color: #8B5FBF;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  margin-bottom: 0.5rem;
   font-family: 'Comic Neue', cursive;
   font-weight: 700;
   line-height: 1.3;
@@ -138,9 +142,9 @@
 
 .card-message p {
   color: #6B5B95;
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
 }
 
 .message-hearts {
@@ -223,33 +227,38 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .slideshow-screen {
-    padding: 1rem;
+    padding: 0.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
   
   .gift-card-container {
-    height: 60vh;
-    max-width: 95vw;
+    height: 50vh;
+    max-width: 100vw;
+    flex: 1;
   }
   
   .card-content {
-    padding: 1.5rem;
+    padding: 0.5rem;
   }
   
   .card-message h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 4vw, 1.2rem);
   }
   
   .card-message p {
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
   }
   
   .slideshow-controls {
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     backdrop-filter: blur(10px);
+    flex-shrink: 0;
   }
   
   .slide-btn {
@@ -282,15 +291,17 @@
   }
   
   .slideshow-actions {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    justify-content: center;
   }
   
   .slideshow-actions .btn {
-    min-height: 44px;
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
+    min-height: 40px;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    padding: 0.5rem 1rem;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
