@@ -733,6 +733,32 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+  
+  .memories-continue-btn {
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    padding: clamp(15px, 4vw, 20px) clamp(30px, 8vw, 40px);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 10;
+  }
+  
+  .memories-continue-btn::before {
+    content: "👆";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+  }
+  
+  .memories-continue-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.8);
+  }
 }
 
 /* Very small screens */
