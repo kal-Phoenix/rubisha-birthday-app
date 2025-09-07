@@ -1,0 +1,735 @@
+/* Jigsaw Puzzle Styles */
+.jigsaw-screen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(10px, 3vw, 20px);
+  font-family: 'Comic Neue', cursive;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+/* Animated Background */
+.jigsaw-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  animation: floatUp 20s infinite linear;
+}
+
+.bg-circle.circle-1 {
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.bg-circle.circle-2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 15%;
+  animation-delay: -5s;
+}
+
+.bg-circle.circle-3 {
+  width: 100px;
+  height: 100px;
+  top: 30%;
+  right: 30%;
+  animation-delay: -10s;
+}
+
+/* Floating Elements */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.floating-elements > div {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatUp 15s infinite linear;
+}
+
+.floating-puzzle {
+  top: 20%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.floating-star {
+  top: 40%;
+  right: 10%;
+  animation-delay: -3s;
+}
+
+.floating-heart {
+  top: 70%;
+  left: 15%;
+  animation-delay: -6s;
+}
+
+.floating-sparkle {
+  top: 10%;
+  right: 20%;
+  animation-delay: -9s;
+}
+
+/* Header */
+.jigsaw-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  width: 100%;
+}
+
+.jigsaw-title {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: bold;
+  color: white;
+  margin: 0 0 15px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 3vw, 20px);
+  animation: titleFadeIn 1s ease-out;
+  flex-wrap: wrap;
+}
+
+.title-icon {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  animation: bounce 2s infinite;
+}
+
+.title-text {
+  background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.jigsaw-subtitle {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 clamp(20px, 5vw, 30px) 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1s ease-out 0.5s both;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+/* Progress Container */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  animation: fadeInUp 1s ease-out 0.7s both;
+}
+
+.progress-bar {
+  width: 100%;
+  max-width: clamp(300px, 60vw, 400px);
+  height: clamp(10px, 2vw, 12px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b9d, #c44569, #f8b500);
+  border-radius: 25px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+}
+
+.progress-text {
+  display: flex;
+  align-items: center;
+  gap: clamp(3px, 1vw, 5px);
+  color: white;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.pieces-count {
+  color: #ff6b9d;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+.pieces-total {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pieces-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+/* Hint Container */
+.hint-container {
+  margin: 20px 0;
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+.hint-button {
+  background: linear-gradient(145deg, #ff6b9d, #c44569);
+  color: white;
+  border: none;
+  padding: clamp(10px, 2.5vw, 12px) clamp(20px, 5vw, 24px);
+  border-radius: 25px;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px; /* Minimum touch target size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hint-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+.hint-button:active {
+  transform: translateY(0);
+}
+
+/* Hint Image */
+.hint-image-container {
+  margin: 20px 0;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.hint-label {
+  color: white;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hint-image {
+  max-width: clamp(250px, 50vw, 300px);
+  max-height: clamp(150px, 30vw, 200px);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  width: 100%;
+  height: auto;
+}
+
+/* Puzzle Area */
+.puzzle-area {
+  position: relative;
+  width: 100%;
+  max-width: clamp(300px, 80vw, 600px);
+  aspect-ratio: 3/4; /* 3 columns / 4 rows = 3:4 aspect ratio */
+  margin: clamp(15px, 4vw, 20px) auto;
+  z-index: 10;
+  background: transparent;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.puzzle-grid {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+/* Puzzle Pieces */
+.puzzle-piece {
+  position: absolute;
+  width: 33.333%;
+  height: 25%;
+  border-radius: 0;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  user-select: none;
+  cursor: move;
+  z-index: 5;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px; /* Minimum touch target size */
+}
+
+.piece-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+.puzzle-piece:hover {
+  transform: scale(1.02);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.puzzle-piece.correct {
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+  border-color: rgba(34, 197, 94, 0.8);
+}
+
+.puzzle-piece.incorrect {
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.puzzle-piece.dragging {
+  transform: scale(1.05);
+  z-index: 15;
+  opacity: 0.9;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+}
+
+.puzzle-piece.touch-dragging {
+  transform: scale(1.1);
+  z-index: 20;
+  opacity: 0.8;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Touch feedback for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .puzzle-piece:active {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  
+  .hint-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Instructions */
+.jigsaw-instructions {
+  margin-top: clamp(20px, 6vw, 40px);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 1s ease-out 1.1s both;
+  padding: 0 1rem;
+}
+
+.instruction-bubble {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 3vw, 15px);
+  background: rgba(255, 255, 255, 0.15);
+  padding: clamp(15px, 4vw, 20px) clamp(20px, 5vw, 30px);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  text-align: center;
+  max-width: 90%;
+}
+
+.instruction-icon {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  animation: bounce 2s infinite;
+}
+
+.instruction-text {
+  color: white;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.instruction-text-mobile {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 500;
+  margin: 5px 0 0 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .instruction-text-mobile {
+    display: block;
+  }
+}
+
+/* Celebration */
+.celebration-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: celebrationFadeIn 0.5s ease-out;
+}
+
+.celebration-content {
+  text-align: center;
+  background: linear-gradient(145deg, #ff6b9d, #c44569);
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: celebrationBounce 0.8s ease-out;
+}
+
+.celebration-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: white;
+  margin: 0 0 20px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: celebrationPulse 1s ease-in-out infinite;
+}
+
+.celebration-message {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: white;
+  margin: 0 0 30px 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.celebration-emojis {
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 4vw, 20px);
+  animation: celebrationFloat 2s ease-in-out infinite;
+  flex-wrap: wrap;
+}
+
+.celebration-emojis .emoji {
+  font-size: clamp(2rem, 5vw, 3rem);
+  animation: celebrationSpin 2s linear infinite;
+}
+
+.celebration-emojis .emoji:nth-child(1) { animation-delay: 0s; }
+.celebration-emojis .emoji:nth-child(2) { animation-delay: 0.2s; }
+.celebration-emojis .emoji:nth-child(3) { animation-delay: 0.4s; }
+.celebration-emojis .emoji:nth-child(4) { animation-delay: 0.6s; }
+.celebration-emojis .emoji:nth-child(5) { animation-delay: 0.8s; }
+
+/* Memories Overlay */
+.memories-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  animation: celebrationFadeIn 0.8s ease-in;
+}
+
+.memories-content {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 3rem);
+  max-width: 1000px;
+  width: 90%;
+  padding: clamp(1rem, 4vw, 2rem);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: celebrationBounce 1s ease-out;
+  flex-direction: column;
+}
+
+.memories-image-container {
+  flex: 1;
+  max-width: clamp(300px, 60vw, 400px);
+  width: 100%;
+}
+
+.memories-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.memories-image:hover {
+  transform: scale(1.02);
+}
+
+.memories-text {
+  flex: 1;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  width: 100%;
+}
+
+.memories-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.memories-message {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.memories-submessage {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #666;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.memories-continue-btn {
+  display: block;
+  margin: 0 auto;
+  padding: clamp(12px, 3vw, 15px) clamp(24px, 6vw, 30px);
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px; /* Minimum touch target size */
+}
+
+.memories-continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(45deg, #5a6fd8, #6a4190);
+}
+
+/* Animations */
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes titleFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes celebrationFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes celebrationBounce {
+  0% {
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes celebrationPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes celebrationFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes celebrationSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .jigsaw-screen {
+    filter: brightness(0.95);
+  }
+}
+
+/* Focus indicators for keyboard navigation */
+.puzzle-piece:focus,
+.hint-button:focus,
+.memories-continue-btn:focus {
+  outline: 3px solid #ffd93d;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .puzzle-piece,
+  .instruction-bubble,
+  .hint-button,
+  .memories-continue-btn {
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Specific mobile optimizations */
+@media (max-width: 768px) {
+  .jigsaw-title {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .puzzle-area {
+    max-width: 90vw;
+  }
+}
